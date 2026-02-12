@@ -104,7 +104,7 @@ h3{
 }
 
 .carrusel .foto-container {
-  min-width: 200px; /* tamaño más pequeño que antes */
+  min-width: 200px; 
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -112,7 +112,9 @@ h3{
 }
 
 .carrusel img {
-  width: 100%;
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
   border-radius: 15px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   cursor: pointer;
@@ -185,7 +187,56 @@ h3{
   }
 }
 
-/* Estilo para centrar el iframe de Spotify */
+/* --- Confetti --- */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background-color: #ff2e7a;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 999;
+  border-radius: 50%;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* --- Animación de entrada del texto --- */
+.carta p, .carta h1, .carta h3 {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s forwards;
+}
+
+.carta p {
+  animation-delay: 0.3s;
+}
+
+.carta p:nth-of-type(2) { animation-delay: 0.6s; }
+.carta p:nth-of-type(3) { animation-delay: 0.9s; }
+.carta p:nth-of-type(4) { animation-delay: 1.2s; }
+.carta p:nth-of-type(5) { animation-delay: 1.5s; }
+.carta p:nth-of-type(6) { animation-delay: 1.8s; }
+.carta p:nth-of-type(7) { animation-delay: 2.1s; }
+.carta p:nth-of-type(8) { animation-delay: 2.4s; }
+.carta p:nth-of-type(9) { animation-delay: 2.7s; }
+.carta p:nth-of-type(10) { animation-delay: 3s; }
+.carta p:nth-of-type(11) { animation-delay: 3.3s; }
+.carta p:nth-of-type(12) { animation-delay: 3.6s; }
+.carta p:nth-of-type(13) { animation-delay: 3.9s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Spotify centrado --- */
 .spotify-container {
   display: flex;
   flex-direction: column;
@@ -263,36 +314,24 @@ h3{
       <div class="flecha flecha-right" onclick="moverCarrusel(1)">&#10095;</div>
     </div>
 
-    <!-- Texto romántico -->
+    <!-- Texto romántico completo -->
     <p><strong>MI AMOSHITAAA,</strong></p>
     <p>Este es nuestro primer 14 de febrero, nu solo como Novios, shi nu también conociéndonos, Antes de conocerte me sentía bastante solito, sin ganas de conocer a alguien, nu estaba mal ni nada simplemente nadie me llamaba la atención, y en medio de todo esho, Llegaste tú para cambiarlo todoooo. Desde que entraste en mi vida volví a sentir cosas hermosas, volví a ilusionarme con querer algo con una persona, y todo empezó a verse mucho máshh bonito contigo a mi laditooo.</p>
-
     <p>Has cambiado mi vida de tantas maneras que a veces nushee ni cómo explicarlo: Ahora soy másh atento aunque a veces nu she pueda notar tantoo JSJSJSJS, me siento  muyyyyy seguroo contigo, me enseñaste a quererme muchisimo máshhhh, hiciste que mis ojitos volvieran a brillar 🥺🥺 y eso es algo que jamás voy a dejar de agradecerte mi niñaaa. El simple hecho de hablar contigo, que me contaras tu día, tus cosas, tu forma de ser, y lo increíblemente preciosa que ereshhh, fue suficiente para que me diera cuenta de cuánto me gustabas y de cuánto te sigo eligiendo todos los días y para siempreeee.</p>
-
     <p>Tenemos tantos momentos lindosh y graciosos juntoshhh, pero hay uno que nunca voy a olvidar JSJSJSJSJ, El dia cuando me quede dormido y desperte pensando que había pasado todo un día desde que me dormí, tú al principio nu entendias nadaa, pensabash que estaba de bromaa o quien sabe shi hasta pensaste que estaba lokito JSJSJSJS, eshe momento aunque me sigue dando vergüenza nu puedo negar que sigue siendo muy gracioso y es un buen recuerdoo JSJSJS, después de esho hasta el dia de hoy te burlas 😭😭😭 JSJSJSJSJS. Shi te soy sincero, me encanta eso de nosotros, reírnos juntos, y también que aunque siempre dices que nu eres cariñosa, conmigo siempre lo seas tantoooo mi amorrrrr.</p>
-
     <p>Tengo muchas coshas que amo de ti, por ejemplo, Amo tu humor, cómo siempre logras sacarme una sonrisa yia sea con tus stickers o cualquier cosita, y obviamente la paciencia infinita que me tienes SJSJSJSJSJ. Me encanta que todos los días me cuentes cómo te fue, shi fue bueno o malo, y escuchar absolutamente todo de tu día. Existe una frase tuya que quiza nunca te lo dije pero la verdad me encanta y la amo tantooo: “Amorrr Jugamoshhhh”. Shi puede ser algo simpleee pero yio lo aprecio mucho. Y aunque me fascinaa todo de tiii, tus ojitos tan bellos tienen algo que me ENCANTAAAAA.</p>
-
     <p>Hoy para mí tú lo eres todo: Mi Novia, Mi Mejor Amiga, Mi Futura Esposa, La persona que siempre está para mí y que me escucha en todo sin importar lo que seaa. Te agradezco cada muestra de amor, cada apoyo, y hasta nuestras pocas discusiones, poque siempre supimos arreglarlas hablando, como el equipo que somoshh. Me haces sentir seguro, querido y en paz sobre todo cuando me dices cosas lindas y cuando sé que confías en mí y me cuentas todo.</p>
-
     <p>Contigo he aprendido tantoo hasta incluso de tu país, de tus costumbres, de sus comidas, de cómo viven estas todas las fechass. Me encanta descubrir el mundo a través de tiiii JSJSJSJSJS.</p>
-
     <p>Y cuando pienso en el futuro, solo te imagino a ti mi amor. Me ilusiona vivir contigo, Formar una familia, Cumplir nuestro sueño de tener dos hijos, casarnos y pasar la vida entera juntos. Quiero viajar contigo, mostrarte cada rincón de mi país, conocer el tuyo de tu mano y después recorrer otros países juntos, creando recuerdos que sean solo nuestros mi chiquitaaa.</p>
-
     <p>Por último, GRASHIAS por existir, por llegar a mi vida de la manera másh inesperada y cuando menosh me lo esperaba y convertirla en algo tan hermosho. Feliz 14 de febrero Mi Amor, Aunque por el momento nu podemosh estar juntitoshhhh, Créeme que yio te elijo a ti SIEMPREEEEEEEEE MI AMOLLLLLLLL TE AMOOOOOOOOOOOO 💞💞💞💞💞💞</p>
 
-    <!-- Canción de Spotify centrada con título -->
+    <!-- Canción de Spotify -->
     <div class="spotify-container">
       <h3>Canción para mi niña 💞</h3>
       <iframe src="https://open.spotify.com/embed/track/0OyPpoyyGUvw8ce4tsY8dn?si=33dde80efac54cc5"
-              width="100%"
-              height="80"
-              frameborder="0"
-              allowtransparency="true"
-              allow="encrypted-media">
+              width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
       </iframe>
     </div>
-
   </div>
 </div>
 
@@ -307,6 +346,7 @@ function check(){
   if(input===correct){
     document.getElementById("passwordScreen").classList.remove("active");
     document.getElementById("cartaScreen").classList.add("active");
+    createConfetti();
   }else{
     alert("Contraseña incorrecta 💔");
     input=""; update();
@@ -325,6 +365,20 @@ function createHeart(){
   setTimeout(()=>heart.remove(),7000);
 }
 setInterval(createHeart,400);
+
+// Confetti
+function createConfetti(){
+  for(let i=0;i<30;i++){
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.backgroundColor = `hsl(${Math.random()*360},70%,70%)`;
+    confetti.style.animationDuration = (Math.random()*2 + 3) + 's';
+    confetti.style.width = confetti.style.height = (Math.random()*8 + 7) + 'px';
+    document.body.appendChild(confetti);
+    setTimeout(()=> confetti.remove(),4000);
+  }
+}
 
 // Modal para agrandar fotos
 document.querySelectorAll('.foto-container img').forEach(img=>{
@@ -356,7 +410,5 @@ function moverCarrusel(direccion){
   carrusel.style.transform = `translateX(-${posicion}px)`;
 }
 </script>
-
 </body>
 </html>
-
