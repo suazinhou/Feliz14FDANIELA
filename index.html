@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz 14 de Febrero 💞</title>
+
+<style>
+:root{
+  --bg:#ffe6f0;
+  --accent:#ff2e7a;
+}
+
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:var(--bg);
+  overflow:hidden;
+  text-align:center;
+}
+
+.screen{
+  display:none;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  flex-direction:column;
+  opacity:0;
+  transition:0.6s;
+}
+
+.active{
+  display:flex;
+  opacity:1;
+}
+
+.keypad{
+  display:grid;
+  grid-template-columns:repeat(3,70px);
+  gap:12px;
+  margin-top:20px;
+}
+
+.key{
+  border:n
