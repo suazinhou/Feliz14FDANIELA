@@ -113,7 +113,6 @@ h3{ text-align:center; margin-top:-10px; }
   margin-top: 6px;
   font-style: italic;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-  transition: transform 0.3s, color 0.3s;
 }
 .caption:hover { transform: scale(1.05); color: #ff2e7a; }
 .flecha {
@@ -160,37 +159,6 @@ h3{ text-align:center; margin-top:-10px; }
 @keyframes confettiFall {
   0% { transform: translateY(0) rotate(0deg); opacity: 1; }
   100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-}
-.carta p, .carta h1, .carta h3 {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s forwards;
-}
-.carta p:nth-of-type(1) { animation-delay:0.3s; }
-.carta p:nth-of-type(2) { animation-delay:0.6s; }
-.carta p:nth-of-type(3) { animation-delay:0.9s; }
-.carta p:nth-of-type(4) { animation-delay:1.2s; }
-.carta p:nth-of-type(5) { animation-delay:1.5s; }
-.carta p:nth-of-type(6) { animation-delay:1.8s; }
-.carta p:nth-of-type(7) { animation-delay:2.1s; }
-.carta p:nth-of-type(8) { animation-delay:2.4s; }
-.carta p:nth-of-type(9) { animation-delay:2.7s; }
-.carta p:nth-of-type(10) { animation-delay:3s; }
-.carta p:nth-of-type(11) { animation-delay:3.3s; }
-.carta p:nth-of-type(12) { animation-delay:3.6s; }
-.carta p:nth-of-type(13) { animation-delay:3.9s; }
-@keyframes fadeInUp { to{ opacity:1; transform:translateY(0); } }
-.spotify-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px 0;
-}
-.spotify-container h3 {
-  color: #ff2e7a;
-  font-family: 'Segoe UI', 'Segoe Script', cursive;
-  margin-bottom: 10px;
-  font-size: 18px;
 }
 #btnCarta{
   margin-top:20px;
@@ -259,7 +227,7 @@ h3{ text-align:center; margin-top:-10px; }
   <div class="carta">
     <h1>FELIZ 14 DE FEBRERO MI NIÑA 💞</h1>
     <h3>14 de Febrero 2026</h3>
-    <!-- Carrusel de fotos -->
+    <!-- Carrusel -->
     <div class="carrusel-container">
       <div class="flecha flecha-left" onclick="moverCarrusel(-1)">&#10094;</div>
       <div class="carrusel" id="carrusel">
@@ -302,23 +270,23 @@ function check(){
   if(input===correct){
     document.getElementById("passwordScreen").classList.remove("active");
     document.getElementById("contadorScreen").classList.add("active");
-    createConfetti();
     actualizarContador();
-  }else{
+    crearConfetti();
+  } else {
     alert("Contraseña incorrecta 💔");
     input=""; update();
   }
 }
 
-// Contador con años, meses y días
+// Contador de días
 function actualizarContador(){
-  const inicio = new Date(2025,8,21);
+  const inicio = new Date(2025,8,21); // 21 Sept 2025
   const hoy = new Date();
   let años = hoy.getFullYear() - inicio.getFullYear();
   let meses = hoy.getMonth() - inicio.getMonth();
   let dias = hoy.getDate() - inicio.getDate();
-  if(dias<0){ meses--; dias+=new Date(hoy.getFullYear(),hoy.getMonth(),0).getDate(); }
-  if(meses<0){ años--; meses+=12; }
+  if(dias<0){ meses--; dias += new Date(hoy.getFullYear(), hoy.getMonth(), 0).getDate(); }
+  if(meses<0){ años--; meses += 12; }
   document.getElementById('años').textContent = años;
   document.getElementById('meses').textContent = meses;
   document.getElementById('dias').textContent = dias;
@@ -331,13 +299,35 @@ function abrirCarta(){
 }
 
 // Corazones flotando
-function create
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="💞";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(Math.random()*3+4)+"s";
+  heart.style.fontSize=(Math.random()*20+15)+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),7000);
 }
-// Modal fotos
+setInterval(createHeart,400);
+
+// Confeti
+function crearConfetti(){
+  for(let i=0;i<100;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.backgroundColor=`hsl(${Math.random()*360},100%,50%)`;
+    c.style.animationDuration=(Math.random()*3+3)+"s";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),6000);
+  }
+}
+
+// Modal para agrandar fotos
 document.querySelectorAll('.foto-container img').forEach(img=>{
   img.addEventListener('click', ()=>{
     const modal = document.createElement('div');
-    modal.className='modal';
     modal.style.cssText="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;justify-content:center;align-items:center;z-index:999;";
     const modalImg = document.createElement('img');
     modalImg.src = img.src;
@@ -349,6 +339,19 @@ document.querySelectorAll('.foto-container img').forEach(img=>{
     modal.addEventListener('click', ()=> modal.remove());
   });
 });
+
+// Carrusel
+let posicion = 0;
+function moverCarrusel(direccion){
+  const carrusel = document.getElementById('carrusel');
+  const containerWidth = carrusel.parentElement.offsetWidth;
+  const fotoWidth = carrusel.querySelector('.foto-container').offsetWidth + 10; // gap
+  const maxPos = carrusel.scrollWidth - containerWidth;
+  posicion += direccion * fotoWidth;
+  posicion = Math.max(0, Math.min(posicion, maxPos));
+  carrusel.style.transform = `translateX(-${posicion}px)`;
+}
 </script>
+
 </body>
 </html>
