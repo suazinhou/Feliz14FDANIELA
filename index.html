@@ -18,6 +18,7 @@ body{
   text-align:center;
 }
 
+/* Pantallas */
 .screen{
   display:none;
   justify-content:center;
@@ -25,12 +26,29 @@ body{
   height:100vh;
   flex-direction:column;
   padding:20px;
+  animation:fade 0.6s ease;
 }
 
 .active{
   display:flex;
 }
 
+@keyframes fade{
+  from{opacity:0; transform:scale(0.98);}
+  to{opacity:1; transform:scale(1);}
+}
+
+/* Input contraseña */
+input{
+  padding:12px;
+  border-radius:10px;
+  border:2px solid var(--accent);
+  text-align:center;
+  font-size:18px;
+  width:150px;
+}
+
+/* Botones */
 button{
   padding:10px 20px;
   border:none;
@@ -40,31 +58,42 @@ button{
   font-size:16px;
   cursor:pointer;
   margin-top:20px;
+  transition:0.3s;
 }
 
+button:hover{
+  transform:scale(1.05);
+}
+
+/* Carta */
 .card{
   background:white;
-  max-width:700px;
+  max-width:750px;
   padding:30px;
   border-radius:20px;
   box-shadow:0 10px 30px rgba(0,0,0,0.1);
   overflow:auto;
   max-height:80vh;
+  text-align:left;
+  white-space:pre-line;
 }
 </style>
 </head>
 
 <body>
 
-<div class="screen active" id="home">
-  <h1>FELIZ 14 DE FEBRERO MI NIÑA 💞</h1>
-  <button onclick="showLetter()">Abrir carta</button>
+<!-- Pantalla contraseña -->
+<div class="screen active" id="lock">
+  <h1>Ingresa la contraseña 💞</h1>
+  <input type="password" id="password" placeholder="****">
+  <button onclick="checkPassword()">Entrar</button>
+  <p id="error" style="color:red;"></p>
 </div>
 
+<!-- Carta -->
 <div class="screen" id="letter">
+  <h1>FELIZ 14 DE FEBRERO MI NIÑA 💞</h1>
   <div class="card">
-    <h2>Para Daniela 💞</h2>
-    <p style="white-space: pre-line; text-align:left;">
 MI AMOSHITAAA,
 
 Antes de conocerte me sentía solo, sin ganas de conocer a alguien y en todo esho llegaste tú para cambiarlo todo. Desde que entraste en mi vida volví a sentir cosas hermosas, volví a ilusionarme con querer algo con una persona, y todo empezó a verse mucho máshh bonito contigo a mi laditooo.
@@ -82,21 +111,18 @@ Grashias por existir, por llegar a mi vida cuando menos lo esperaba y convertirl
 Feliz 14 de febrero, mi amor hoy y siempreee aunque por el momento nu estemos juntitoshhhh.
 
 TE AMOOOOOOOOOOOO 💞💞💞
-    </p>
-
-    <button onclick="goBack()">Volver</button>
   </div>
 </div>
 
 <script>
-function showLetter(){
-  document.getElementById("home").classList.remove("active");
-  document.getElementById("letter").classList.add("active");
-}
-
-function goBack(){
-  document.getElementById("letter").classList.remove("active");
-  document.getElementById("home").classList.add("active");
+function checkPassword(){
+  const pass = document.getElementById("password").value;
+  if(pass === "2109"){
+    document.getElementById("lock").classList.remove("active");
+    document.getElementById("letter").classList.add("active");
+  } else {
+    document.getElementById("error").textContent = "Contraseña incorrecta 💔";
+  }
 }
 </script>
 
